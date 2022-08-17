@@ -1,5 +1,5 @@
 # latest version is older
-FROM fluent/fluentd:edge
+FROM fluent/fluentd:edge-debian
 
 ENV FLUENTD_DIR=fluentd
 ENV PATH="/root:$PATH"
