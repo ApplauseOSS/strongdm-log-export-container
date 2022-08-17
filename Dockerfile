@@ -5,7 +5,7 @@ ENV FLUENTD_DIR=fluentd
 ENV PATH="/root:$PATH"
 
 USER root
-RUN apt-get update && apt-get install -y curl ca-certificates gettext build-essential ruby-dev zlib1g-dev
+RUN apt-get update && apt-get install -y build-essential curl ca-certificates gettext jq ruby-dev zlib1g-dev
 RUN gem install bundler -v '~> 2.3.3'
 
 COPY Gemfile /Gemfile
@@ -15,7 +15,6 @@ RUN curl -fsSLo sdm.zip $(curl https://app.strongdm.com/releases/upgrade\?os\=li
 RUN unzip -x sdm.zip
 RUN rm sdm.zip
 RUN mv sdm /root
-RUN apt-get purge curl ca-certificates wget
 RUN mkdir /root/.sdm
 
 COPY fluentd /fluentd
