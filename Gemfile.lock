@@ -215,6 +215,7 @@ GEM
       mime-types-data (~> 3.2015)
     mime-types-data (3.2022.0105)
     mini_mime (1.1.2)
+    mini_portile2 (2.8.4)
     minitest (5.19.0)
     mongo (2.6.4)
       bson (>= 4.3.0, < 5.0.0)
@@ -225,7 +226,8 @@ GEM
     net-http-persistent (3.1.0)
       connection_pool (~> 2.2)
     netrc (0.11.0)
-    nokogiri (1.13.6)
+    nokogiri (1.15.3)
+      mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
     openid_connect (1.1.8)
       activemodel
@@ -241,7 +243,7 @@ GEM
     power_assert (2.0.1)
     prometheus-client (4.0.0)
     public_suffix (4.0.7)
-    racc (1.6.0)
+    racc (1.7.1)
     rack (3.0.8)
     rack-oauth2 (1.19.0)
       activesupport
