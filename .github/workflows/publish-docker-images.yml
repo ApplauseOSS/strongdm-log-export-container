@@ -32,8 +32,8 @@ jobs:
           images: |
             ${{ env.IMAGE_NAME }}
           tags: |
-            # Only version, no revision
-            type=match,pattern=v(.*)-(.*),group=1
+            # Only version
+            type=match,pattern=v(.*),group=1
             # branch
             type=ref,event=branch
             # semver
