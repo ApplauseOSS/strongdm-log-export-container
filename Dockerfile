@@ -5,10 +5,13 @@ ENV FLUENTD_DIR=fluentd
 ENV PATH="/root:$PATH"
 
 USER root
-RUN apt-get update && apt-get install -y build-essential curl ca-certificates gettext jq ruby-dev zlib1g-dev
+RUN apt-get update && apt-get install -y build-essential curl ca-certificates gettext jq pkg-config ruby-dev libssl-dev zlib1g-dev
 RUN gem install bundler -v '~> 2.3.3'
 
-COPY Gemfile /Gemfile
+COPY Gemfile Gemfile.lock /
+# Fail the build if Gemfile and Gemfile.lock have drifted, rather than
+# silently re-resolving the whole dependency tree
+ENV BUNDLE_FROZEN=true
 RUN bundle install
 
 RUN curl -fsSLo sdm.zip $(curl https://app.strongdm.com/releases/upgrade\?os\=linux\&arch\=$(uname -m | sed -e 's:x86_64:amd64:' -e 's:aarch64:arm64:')\&software\=sdm-cli\&version\=productionexample | jq ".url" -r)
